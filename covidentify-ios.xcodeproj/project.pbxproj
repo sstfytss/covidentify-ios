@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		5859F1AF28F7C50C0033749A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5859F1AE28F7C50C0033749A /* LoginViewController.swift */; };
+		5859F1B128F856050033749A /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5859F1B028F856050033749A /* WelcomeViewController.swift */; };
+		5859F1B328F856D10033749A /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5859F1B228F856D10033749A /* SignupViewController.swift */; };
+		5859F1B528F857540033749A /* ConnectDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5859F1B428F857540033749A /* ConnectDeviceViewController.swift */; };
+		5859F1B728F8581B0033749A /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5859F1B628F8581B0033749A /* DashboardViewController.swift */; };
 		8F5B118C28ECDB790075DEE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5B118B28ECDB790075DEE1 /* AppDelegate.swift */; };
 		8F5B118E28ECDB790075DEE1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5B118D28ECDB790075DEE1 /* SceneDelegate.swift */; };
 		8F5B119028ECDB790075DEE1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5B118F28ECDB790075DEE1 /* ViewController.swift */; };
@@ -39,6 +43,10 @@
 /* Begin PBXFileReference section */
 		5859F1A928F709450033749A /* covidentify-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "covidentify-ios.entitlements"; sourceTree = "<group>"; };
 		5859F1AE28F7C50C0033749A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		5859F1B028F856050033749A /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		5859F1B228F856D10033749A /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		5859F1B428F857540033749A /* ConnectDeviceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectDeviceViewController.swift; sourceTree = "<group>"; };
+		5859F1B628F8581B0033749A /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		8F5B118828ECDB790075DEE1 /* covidentify-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "covidentify-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F5B118B28ECDB790075DEE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8F5B118D28ECDB790075DEE1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -105,6 +113,10 @@
 				5859F1A928F709450033749A /* covidentify-ios.entitlements */,
 				8F5B118B28ECDB790075DEE1 /* AppDelegate.swift */,
 				8F5B118D28ECDB790075DEE1 /* SceneDelegate.swift */,
+				5859F1B028F856050033749A /* WelcomeViewController.swift */,
+				5859F1B228F856D10033749A /* SignupViewController.swift */,
+				5859F1B628F8581B0033749A /* DashboardViewController.swift */,
+				5859F1B428F857540033749A /* ConnectDeviceViewController.swift */,
 				5859F1AE28F7C50C0033749A /* LoginViewController.swift */,
 				8F5B118F28ECDB790075DEE1 /* ViewController.swift */,
 				8F5B119128ECDB790075DEE1 /* Main.storyboard */,
@@ -263,10 +275,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5859F1B328F856D10033749A /* SignupViewController.swift in Sources */,
 				5859F1AF28F7C50C0033749A /* LoginViewController.swift in Sources */,
+				5859F1B128F856050033749A /* WelcomeViewController.swift in Sources */,
 				8F5B119028ECDB790075DEE1 /* ViewController.swift in Sources */,
 				8F5B118C28ECDB790075DEE1 /* AppDelegate.swift in Sources */,
 				8F5B118E28ECDB790075DEE1 /* SceneDelegate.swift in Sources */,
+				5859F1B528F857540033749A /* ConnectDeviceViewController.swift in Sources */,
+				5859F1B728F8581B0033749A /* DashboardViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
