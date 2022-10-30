@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5850AD7C29047F690049BC98 /* HKimporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5850AD7B29047F690049BC98 /* HKimporter.swift */; };
+		5850AD7E29047FBB0049BC98 /* ExportDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5850AD7D29047FBB0049BC98 /* ExportDataViewController.swift */; };
+		5850AD802904820D0049BC98 /* export.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5850AD7F2904820D0049BC98 /* export.xml */; };
 		5859F1AF28F7C50C0033749A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5859F1AE28F7C50C0033749A /* LoginViewController.swift */; };
 		5859F1B128F856050033749A /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5859F1B028F856050033749A /* WelcomeViewController.swift */; };
 		5859F1B328F856D10033749A /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5859F1B228F856D10033749A /* SignupViewController.swift */; };
@@ -41,6 +44,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5850AD7B29047F690049BC98 /* HKimporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKimporter.swift; sourceTree = "<group>"; };
+		5850AD7D29047FBB0049BC98 /* ExportDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportDataViewController.swift; sourceTree = "<group>"; };
+		5850AD7F2904820D0049BC98 /* export.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = export.xml; path = ../HealthKitImporter/export.xml; sourceTree = "<group>"; };
 		5859F1A928F709450033749A /* covidentify-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "covidentify-ios.entitlements"; sourceTree = "<group>"; };
 		5859F1AE28F7C50C0033749A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5859F1B028F856050033749A /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
@@ -90,6 +96,7 @@
 		8F5B117F28ECDB790075DEE1 = {
 			isa = PBXGroup;
 			children = (
+				5850AD7F2904820D0049BC98 /* export.xml */,
 				8F5B118A28ECDB790075DEE1 /* covidentify-ios */,
 				8F5B11A128ECDB7B0075DEE1 /* covidentify-iosTests */,
 				8F5B11AB28ECDB7B0075DEE1 /* covidentify-iosUITests */,
@@ -123,6 +130,8 @@
 				8F5B119428ECDB7B0075DEE1 /* Assets.xcassets */,
 				8F5B119628ECDB7B0075DEE1 /* LaunchScreen.storyboard */,
 				8F5B119928ECDB7B0075DEE1 /* Info.plist */,
+				5850AD7B29047F690049BC98 /* HKimporter.swift */,
+				5850AD7D29047FBB0049BC98 /* ExportDataViewController.swift */,
 			);
 			path = "covidentify-ios";
 			sourceTree = "<group>";
@@ -251,6 +260,7 @@
 				8F5B119828ECDB7B0075DEE1 /* LaunchScreen.storyboard in Resources */,
 				8F5B119528ECDB7B0075DEE1 /* Assets.xcassets in Resources */,
 				8F5B119328ECDB790075DEE1 /* Main.storyboard in Resources */,
+				5850AD802904820D0049BC98 /* export.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,7 +291,9 @@
 				8F5B119028ECDB790075DEE1 /* DashboardViewController.swift in Sources */,
 				8F5B118C28ECDB790075DEE1 /* AppDelegate.swift in Sources */,
 				8F5B118E28ECDB790075DEE1 /* SceneDelegate.swift in Sources */,
+				5850AD7C29047F690049BC98 /* HKimporter.swift in Sources */,
 				5859F1B528F857540033749A /* ConnectDeviceViewController.swift in Sources */,
+				5850AD7E29047FBB0049BC98 /* ExportDataViewController.swift in Sources */,
 				5883276728F90235009DC094 /* AppleHealthkitAuthorizationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
