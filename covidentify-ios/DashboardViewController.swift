@@ -13,6 +13,7 @@ class DashboardViewController: UIViewController {
     
     @IBOutlet weak var ShareHealthDataButton: UIButton!
     
+    @IBOutlet weak var lastTimeShared: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -21,6 +22,7 @@ class DashboardViewController: UIViewController {
 
     @IBAction func buttonTapped(_ sender: Any) {
         healthStore = HKHealthStore()
+        queryHeartRate()
         queryStepCount()
         querySleepAnalysis()
         
@@ -39,13 +41,9 @@ class DashboardViewController: UIViewController {
                 print("sleep analysis error")
                 return
             }
-            print("check here")
             for sample in samples {
                 // Process each sample here.
-                print(sample)
-                print(sample.startDate)
-                print(sample.endDate)
-                print()
+                print("Sleep value: " + "\(sample.value)" + " Start Time: " + "\(sample.startDate)" + " End Time: " + "\(sample.endDate)")
             }
             
             // The results come back on an anonymous background queue.
@@ -53,7 +51,11 @@ class DashboardViewController: UIViewController {
             
             DispatchQueue.main.async {
                 // Update the UI here.
-                print("")
+                let date = Date()
+                let df = DateFormatter()
+                df.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                let dateString = df.string(from: date)
+                self.lastTimeShared.text = dateString
             }
         }
         
@@ -77,7 +79,11 @@ class DashboardViewController: UIViewController {
             
             for sample in samples {
                 // Process each sample here.
-                print(sample)
+                if let device = sample.device {
+                    print(device)
+                }
+                print("Step quantity: " + "\(sample.quantity)" + " Start Time: " + "\(sample.startDate)" + " End Time: " + "\(sample.endDate)")
+
             }
             
             // The results come back on an anonymous background queue.
@@ -89,6 +95,36 @@ class DashboardViewController: UIViewController {
             }
         }
         healthStore!.execute(queryStep)
+    }
+    
+    func queryHeartRate() -> Void {
+        guard let sampleHeartRate = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.heartRate) else {
+            fatalError("*** This method should never fail ***")
+        }
+        let queryHeartRate = HKSampleQuery(sampleType: sampleHeartRate, predicate: nil, limit: Int(HKObjectQueryNoLimit), sortDescriptors: nil) {
+            query, results, error in
+   
+            guard let samples = results as? [HKQuantitySample] else {
+                // Handle any errors here.
+                print("heart rate analysis error")
+                return
+            }
+            
+            for sample in samples {
+                // Process each sample here.
+                // start time and end time should be same for each heart rate sample
+                print("Heart Rate: " + "\(sample.quantity)" + " Start Time: " + "\(sample.startDate)" + " End Time: " + "\(sample.endDate)")
+            }
+            
+            // The results come back on an anonymous background queue.
+            // Dispatch to the main queue before modifying the UI.
+            
+            DispatchQueue.main.async {
+                // Update the UI here.
+                print("")
+            }
+        }
+        healthStore!.execute(queryHeartRate)
     }
     
     func queryActivity() -> Void {
