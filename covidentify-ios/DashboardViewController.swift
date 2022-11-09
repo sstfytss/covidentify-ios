@@ -23,8 +23,37 @@ class DashboardViewController: UIViewController {
     @IBAction func buttonTapped(_ sender: Any) {
         healthStore = HKHealthStore()
         queryHeartRate()
-        queryStepCount()
-        querySleepAnalysis()
+//        queryStepCount()
+//        querySleepAnalysis()
+        
+
+    
+    }
+    func postHeartRateData(participantId: Int, deviceId: Int, date: String, heartRate: Int) {
+        guard let url = URL(string: "http://test-ios.azurewebsites.net/api/todo"),
+              let payload = "{\"id\":0,\"participant_id\":\(participantId),\"device_id\":\(deviceId),\"date\":\"\(date)\",\"heart_rate\":\(heartRate)}".data(using: .utf8)
+        else {
+            print("returning")
+            return
+        }
+        print("returning2")
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("text/plain", forHTTPHeaderField: "accept")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = payload
+        request.timeoutInterval = 1000
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            print("request, \(response)")
+            guard error == nil else { print(error!.localizedDescription); return }
+            guard let data = data else { print("Empty data"); return }
+
+            if let str = String(data: data, encoding: .utf8) {
+                print(str)
+            }
+        }.resume()
+        
         
     }
       
@@ -114,6 +143,9 @@ class DashboardViewController: UIViewController {
                 // Process each sample here.
                 // start time and end time should be same for each heart rate sample
                 print("Heart Rate: " + "\(sample.quantity)" + " Start Time: " + "\(sample.startDate)" + " End Time: " + "\(sample.endDate)")
+                let formatter = DateFormatter()
+                formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
+                self.postHeartRateData(participantId: 0, deviceId: 0, date: formatter.string(from: sample.startDate), heartRate: Int(sample.quantity.doubleValue(for: HKUnit.count().unitDivided(by: HKUnit.minute()))))
             }
             
             // The results come back on an anonymous background queue.
