@@ -53,8 +53,6 @@ class DashboardViewController: UIViewController {
                 print(str)
             }
         }.resume()
-        
-        
     }
       
     
