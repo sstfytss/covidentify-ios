@@ -9,6 +9,9 @@ import UIKit
 import HealthKit
 
 class DashboardViewController: UIViewController {
+    
+    
+    
     var healthStore: HKHealthStore?
     
     @IBOutlet weak var ShareHealthDataButton: UIButton!
@@ -22,12 +25,36 @@ class DashboardViewController: UIViewController {
 
     @IBAction func buttonTapped(_ sender: Any) {
         healthStore = HKHealthStore()
-        queryHeartRate()
-//        queryStepCount()
+//        queryHeartRate()
+        queryStepCount()
 //        querySleepAnalysis()
-        
-
     
+    }
+    func postJsonHeartRateData(jsonString: String) {
+        guard let url = URL(string: "https://ios-http-db.azurewebsites.net/api/HttpTrigger-ios"),
+              let payload = jsonString.data(using: .utf8)
+        else {
+            print("URL error")
+            return
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("text/plain", forHTTPHeaderField: "accept")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = payload
+        request.timeoutInterval = 1000
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            print("request, \(response)")
+            guard error == nil else { print(error!.localizedDescription); return }
+            guard let data = data else { print("Empty data"); return }
+
+            if let str = String(data: data, encoding: .utf8) {
+                print(str)
+            }
+        }.resume()
+        
+        
     }
     func postHeartRateData(participantId: Int, deviceId: Int, date: String, heartRate: Int) {
         guard let url = URL(string: "http://test-ios.azurewebsites.net/api/todo"),
@@ -138,16 +165,28 @@ class DashboardViewController: UIViewController {
                 print("heart rate analysis error")
                 return
             }
+            var myNewDictArray: [Dictionary<String, String>] = []
             
             for sample in samples {
                 // Process each sample here.
                 // start time and end time should be same for each heart rate sample
-                print("Heart Rate: " + "\(sample.quantity)" + " Start Time: " + "\(sample.startDate)" + " End Time: " + "\(sample.endDate)")
+//                print("Heart Rate: " + "\(sample.quantity)" + " Start Time: " + "\(sample.startDate)" + " End Time: " + "\(sample.endDate)")
                 let formatter = DateFormatter()
                 formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
-                self.postHeartRateData(participantId: 0, deviceId: 0, date: formatter.string(from: sample.startDate), heartRate: Int(sample.quantity.doubleValue(for: HKUnit.count().unitDivided(by: HKUnit.minute()))))
+//                self.postHeartRateData(participantId: 0, deviceId: 0, date: formatter.string(from: sample.startDate), heartRate: Int(sample.quantity.doubleValue(for: HKUnit.count().unitDivided(by: HKUnit.minute()))))
+                var dictEntry: [String:String] = ["device_id": "6666",  "date":formatter.string(from: sample.startDate), "heart_rate":"\(Int(sample.quantity.doubleValue(for: HKUnit.count().unitDivided(by: HKUnit.minute()))))", "participant_id":"8888"]
+                myNewDictArray.append(dictEntry)
             }
-            
+            do {
+                let jsonData = try JSONSerialization.data(withJSONObject: myNewDictArray, options: [])
+                let theJSONText = String(data: jsonData, encoding: .ascii)
+                    print("JSON string = \(theJSONText!)")
+                self.postJsonHeartRateData(jsonString: theJSONText!)
+                
+            } catch {
+                print("error in converting data to json")
+            }
+
             // The results come back on an anonymous background queue.
             // Dispatch to the main queue before modifying the UI.
             
@@ -202,6 +241,12 @@ class DashboardViewController: UIViewController {
             }
         }
         healthStore!.execute(query)
+    }
+    
+    
+    @IBAction func clickBlob(_ sender: Any) {
+        
+        
     }
     
  
