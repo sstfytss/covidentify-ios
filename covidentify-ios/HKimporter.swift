@@ -36,7 +36,7 @@ class HKRecord: CustomStringConvertible {
     var startDate: Date = Date()
     var endDate: Date = Date()
     var creationDate: Date = Date()
-//    var device: HKDevice?
+    var hardwareVersion: String = String()
     
     //for workouts
     var activityType: HKWorkoutActivityType? = HKWorkoutActivityType(rawValue: 0)
@@ -176,12 +176,14 @@ class HKimporter : NSObject, XMLParserDelegate {
             currRecord.sourceVersion = attributeDict["sourceVersion"] ??  ""
             currRecord.value = Double(attributeDict["value"] ?? "0") ?? 0
             currRecord.unit = attributeDict["unit"] ?? ""
+            currRecord.hardwareVersion = "Watch6,6"
+            print("device type")
+            print(attributeDict["device"] ?? "")
             
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
             if let date = formatter.date(from: attributeDict["startDate"]!) {
                 currRecord.startDate = date
-                print(currRecord.startDate)
             }
             if let date = formatter.date(from: attributeDict["endDate"]!){
                 currRecord.endDate = date
@@ -257,7 +259,7 @@ class HKimporter : NSObject, XMLParserDelegate {
         
         var hkSample: HKSample? = nil
         if let type = HKQuantityType.quantityType(forIdentifier:  HKQuantityTypeIdentifier(rawValue: item.type)) {
-            hkSample = HKQuantitySample.init(type: type, quantity: quantity, start: item.startDate, end: item.endDate, metadata: item.metadata)
+            hkSample = HKQuantitySample.init(type: type, quantity: quantity, start: item.startDate, end: item.endDate, device: HKDevice.init(name: nil, manufacturer: nil, model: nil, hardwareVersion: item.hardwareVersion, firmwareVersion: nil, softwareVersion: nil, localIdentifier: nil, udiDeviceIdentifier: nil), metadata: item.metadata)
         } else if let type = HKCategoryType.categoryType(forIdentifier: HKCategoryTypeIdentifier(rawValue: item.type)) {
             hkSample = HKCategorySample.init(type: type, value: Int(item.value), start: item.startDate, end: item.endDate, metadata: item.metadata)
         } else if item.type == HKObjectType.workoutType().identifier {

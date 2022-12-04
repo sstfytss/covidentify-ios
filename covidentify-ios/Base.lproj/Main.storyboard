@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fLn-go-qRt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cDJ-Gv-EPm">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -95,6 +95,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IW9-8B-4e5">
+                                <rect key="frame" x="157.66666666666666" y="577.66666666666663" width="75" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <action selector="clickBlob:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aqx-Fm-UVe"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -104,8 +112,10 @@
                             <constraint firstItem="Kej-cu-b1Q" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="Pdc-a7-1Bt"/>
                             <constraint firstItem="SEu-DP-LGX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="SKG-ie-ycl"/>
                             <constraint firstItem="0xo-XH-bzZ" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="V01-ct-FVb"/>
+                            <constraint firstItem="IW9-8B-4e5" firstAttribute="top" secondItem="Kej-cu-b1Q" secondAttribute="bottom" constant="87.329999999999998" id="XDl-m1-2DI"/>
                             <constraint firstItem="ahY-Xd-fm5" firstAttribute="leading" secondItem="Kej-cu-b1Q" secondAttribute="trailing" constant="20" id="d2O-xI-X5b"/>
                             <constraint firstItem="0xo-XH-bzZ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="kQT-Z7-iLy"/>
+                            <constraint firstItem="IW9-8B-4e5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="nzA-x8-4yg"/>
                             <constraint firstItem="0xo-XH-bzZ" firstAttribute="top" secondItem="SEu-DP-LGX" secondAttribute="bottom" constant="80" id="qrV-w5-EOn"/>
                         </constraints>
                     </view>
@@ -184,6 +194,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JWg-kH-gSU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2025" y="547"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="J2O-IH-EJE">
+            <objects>
+                <viewController id="IJY-0w-kD1" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Yxt-vI-8Sq">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="NW1-1a-4To"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="afh-kG-eDp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1558" y="1426"/>
         </scene>
         <!--Apple Healthkit Authorization View Controller-->
         <scene sceneID="R59-qO-CRK">
