@@ -13,6 +13,7 @@ class SignupViewController: UIViewController {
         super.viewDidLoad()
         errorMessageField.alpha = 0
         activityMonitor.stopAnimating()
+        hideKeyboardWhenTappedAround()
         // Do any additional setup after loading the view.
     }
     
@@ -131,4 +132,25 @@ class SignupViewController: UIViewController {
     }
     */
 
+}
+
+extension SignupViewController: UITextFieldDelegate {
+    
+    // Return button tapped
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    // Around tapped
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SignupViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
 }

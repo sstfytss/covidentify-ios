@@ -23,13 +23,11 @@ class DashboardViewController: UIViewController {
     @IBAction func buttonTapped(_ sender: Any) {
         healthStore = HKHealthStore()
         queryHeartRate()
-//        queryStepCount()
-//        querySleepAnalysis()
-        
-
     
     }
     func postHeartRateData(participantId: Int, deviceId: Int, date: String, heartRate: Int) {
+        //https://covidentifyphoneuploads.azurewebsites.net/api/PhoneUpload
+        //http://test-ios.azurewebsites.net/api/todo
         guard let url = URL(string: "http://test-ios.azurewebsites.net/api/todo"),
               let payload = "{\"id\":0,\"participant_id\":\(participantId),\"device_id\":\(deviceId),\"date\":\"\(date)\",\"heart_rate\":\(heartRate)}".data(using: .utf8)
         else {
@@ -136,15 +134,17 @@ class DashboardViewController: UIViewController {
                 print("heart rate analysis error")
                 return
             }
+            print(samples)
+            self.postHeartRateData(participantId: 0, deviceId: 0, date: "\(samples)hi", heartRate: Int(46))
             
-            for sample in samples {
-                // Process each sample here.
-                // start time and end time should be same for each heart rate sample
-                print("Heart Rate: " + "\(sample.quantity)" + " Start Time: " + "\(sample.startDate)" + " End Time: " + "\(sample.endDate)")
-                let formatter = DateFormatter()
-                formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
-                self.postHeartRateData(participantId: 0, deviceId: 0, date: formatter.string(from: sample.startDate), heartRate: Int(sample.quantity.doubleValue(for: HKUnit.count().unitDivided(by: HKUnit.minute()))))
-            }
+//            for sample in samples {
+//                // Process each sample here.
+//                // start time and end time should be same for each heart rate sample
+//                print("Heart Rate: " + "\(sample.quantity)" + " Start Time: " + "\(sample.startDate)" + " End Time: " + "\(sample.endDate)")
+//                let formatter = DateFormatter()
+//                formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
+//                self.postHeartRateData(participantId: 0, deviceId: 0, date: samples, heartRate: Int(sample.quantity.doubleValue(for: HKUnit.count().unitDivided(by: HKUnit.minute()))))
+//            }
             
             // The results come back on an anonymous background queue.
             // Dispatch to the main queue before modifying the UI.
