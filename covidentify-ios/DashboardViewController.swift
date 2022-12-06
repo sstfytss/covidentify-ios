@@ -25,9 +25,9 @@ class DashboardViewController: UIViewController {
 
     @IBAction func buttonTapped(_ sender: Any) {
         healthStore = HKHealthStore()
-//        queryHeartRate()
-//        queryStepCount()
-//        querySleepAnalysis()
+        queryHeartRate()
+        queryStepCount()
+        querySleepAnalysis()
     
     }
     
@@ -79,9 +79,9 @@ class DashboardViewController: UIViewController {
                 // Process each sample here.
                 let formatter = DateFormatter()
                 formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
-                
-                if (sample.device?.hardwareVersion == "Watch6,6" || sample.device?.hardwareVersion == "Watch6,7" || sample.device?.hardwareVersion == "Watch6,8" || sample.device?.hardwareVersion == "Watch6,9") {
-                    if (myNewDictArray.count == 0) {
+                let deviceType : String = sample.device?.hardwareVersion ?? "Watch6,6"
+                if (deviceType == "Watch6,6" || deviceType == "Watch6,7" || deviceType == "Watch6,8" || deviceType == "Watch6,9") {
+                    if (myNewDictArray.count == 1) {
                         var deviceType: [String:String] = ["apple_watch_type": "series_7"]
                         myNewDictArray.append(deviceType)
                     }
@@ -142,9 +142,9 @@ class DashboardViewController: UIViewController {
                 //print("Step quantity: " + "\(sample.quantity)" + " Start Time: " + "\(sample.startDate)" + " End Time: " + "\(sample.endDate)")
                 let formatter = DateFormatter()
                 formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
-                
-                if (sample.device?.hardwareVersion == "Watch6,6" || sample.device?.hardwareVersion == "Watch6,7" || sample.device?.hardwareVersion == "Watch6,8" || sample.device?.hardwareVersion == "Watch6,9") {
-                    if (myNewDictArray.count == 0) {
+                let deviceType : String = sample.device?.hardwareVersion ?? "Watch6,6"
+                if (deviceType == "Watch6,6" || deviceType == "Watch6,7" || deviceType == "Watch6,8" || deviceType == "Watch6,9") {
+                    if (myNewDictArray.count == 1) {
                         var deviceType: [String:String] = ["apple_watch_type": "series_7"]
                         myNewDictArray.append(deviceType)
                     }
@@ -203,9 +203,9 @@ class DashboardViewController: UIViewController {
 //                print("Heart Rate: " + "\(sample.quantity)" + " Start Time: " + "\(sample.startDate)" + " End Time: " + "\(sample.endDate)")
                 let formatter = DateFormatter()
                 formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
-                
-                if (sample.device?.hardwareVersion == "Watch6,6" || sample.device?.hardwareVersion == "Watch6,7" || sample.device?.hardwareVersion == "Watch6,8" || sample.device?.hardwareVersion == "Watch6,9") {
-                    if (myNewDictArray.count == 0) {
+                let deviceType : String = sample.device?.hardwareVersion ?? "Watch6,6"
+                if (deviceType == "Watch6,6" || deviceType == "Watch6,7" || deviceType == "Watch6,8" || deviceType == "Watch6,9") {
+                    if (myNewDictArray.count == 1) {
                         var deviceType: [String:String] = ["apple_watch_type": "series_7"]
                         myNewDictArray.append(deviceType)
                     }
