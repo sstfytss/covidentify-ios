@@ -25,65 +25,13 @@ class DashboardViewController: UIViewController {
 
     @IBAction func buttonTapped(_ sender: Any) {
         healthStore = HKHealthStore()
-//        queryHeartRate()
-//        queryStepCount()
-//        querySleepAnalysis()
+        queryHeartRate()
+        queryStepCount()
+        querySleepAnalysis()
     
     }
     
-    func postJsonHeartRateData(jsonString: String) {
-        guard let url = URL(string: "https://ios-http-db.azurewebsites.net/api/HttpTrigger-ios"),
-              let payload = jsonString.data(using: .utf8)
-        else {
-            print("URL error")
-            return
-        }
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.addValue("text/plain", forHTTPHeaderField: "accept")
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = payload
-        request.timeoutInterval = 1000
-        
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
-            print("request, \(response)")
-            guard error == nil else { print(error!.localizedDescription); return }
-            guard let data = data else { print("Empty data"); return }
-
-            if let str = String(data: data, encoding: .utf8) {
-                print(str)
-            }
-        }.resume()
-        
-        
-    }
-    func postJsonStepCountData(jsonString: String) {
-        guard let url = URL(string: "https://ios-http-db.azurewebsites.net/api/HttpTrigger-ios"),
-              let payload = jsonString.data(using: .utf8)
-        else {
-            print("URL error")
-            return
-        }
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.addValue("text/plain", forHTTPHeaderField: "accept")
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = payload
-        request.timeoutInterval = 1000
-        
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
-            print("request, \(response)")
-            guard error == nil else { print(error!.localizedDescription); return }
-            guard let data = data else { print("Empty data"); return }
-
-            if let str = String(data: data, encoding: .utf8) {
-                print(str)
-            }
-        }.resume()
-        
-        
-    }
-    func postJsonSleepData(jsonString: String) {
+    func postJsonData(jsonString: String) {
         guard let url = URL(string: "https://ios-http-db.azurewebsites.net/api/HttpTrigger-ios"),
               let payload = jsonString.data(using: .utf8)
         else {
@@ -125,14 +73,16 @@ class DashboardViewController: UIViewController {
                 return
             }
             var myNewDictArray: [Dictionary<String, String>] = []
+            var dataType: [String:String] = ["health_data_type": "sleep"]
+            myNewDictArray.append(dataType)
             
             for sample in samples {
                 // Process each sample here.
                 let formatter = DateFormatter()
                 formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
-                
-                if (sample.device?.hardwareVersion == "Watch6,6" || sample.device?.hardwareVersion == "Watch6,7" || sample.device?.hardwareVersion == "Watch6,8" || sample.device?.hardwareVersion == "Watch6,9") {
-                    if (myNewDictArray.count == 0) {
+                let deviceType : String = sample.device?.hardwareVersion ?? "Watch6,6"
+                if (deviceType == "Watch6,6" || deviceType == "Watch6,7" || deviceType == "Watch6,8" || deviceType == "Watch6,9") {
+                    if (myNewDictArray.count == 1) {
                         var deviceType: [String:String] = ["apple_watch_type": "series_7"]
                         myNewDictArray.append(deviceType)
                     }
@@ -146,7 +96,7 @@ class DashboardViewController: UIViewController {
                 let jsonData = try JSONSerialization.data(withJSONObject: myNewDictArray, options: [])
                 let theJSONText = String(data: jsonData, encoding: .ascii)
                     print("JSON string = \(theJSONText!)")
-                self.postJsonSleepData(jsonString: theJSONText!)
+                self.postJsonData(jsonString: theJSONText!)
                 
             } catch {
                 print("error in converting data to json")
@@ -185,15 +135,17 @@ class DashboardViewController: UIViewController {
             }
             
             var myNewDictArray: [Dictionary<String, String>] = []
+            var dataType: [String:String] = ["health_data_type": "step_count"]
+            myNewDictArray.append(dataType)
             
             for sample in samples {
                 // Process each sample here.
                 //print("Step quantity: " + "\(sample.quantity)" + " Start Time: " + "\(sample.startDate)" + " End Time: " + "\(sample.endDate)")
                 let formatter = DateFormatter()
                 formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
-                
-                if (sample.device?.hardwareVersion == "Watch6,6" || sample.device?.hardwareVersion == "Watch6,7" || sample.device?.hardwareVersion == "Watch6,8" || sample.device?.hardwareVersion == "Watch6,9") {
-                    if (myNewDictArray.count == 0) {
+                let deviceType : String = sample.device?.hardwareVersion ?? "Watch6,6"
+                if (deviceType == "Watch6,6" || deviceType == "Watch6,7" || deviceType == "Watch6,8" || deviceType == "Watch6,9") {
+                    if (myNewDictArray.count == 1) {
                         var deviceType: [String:String] = ["apple_watch_type": "series_7"]
                         myNewDictArray.append(deviceType)
                     }
@@ -207,7 +159,7 @@ class DashboardViewController: UIViewController {
                 let jsonData = try JSONSerialization.data(withJSONObject: myNewDictArray, options: [])
                 let theJSONText = String(data: jsonData, encoding: .ascii)
                     print("JSON string = \(theJSONText!)")
-                self.postJsonStepCountData(jsonString: theJSONText!)
+                self.postJsonData(jsonString: theJSONText!)
                 
             } catch {
                 print("error in converting data to json")
@@ -243,6 +195,8 @@ class DashboardViewController: UIViewController {
                 return
             }
             var myNewDictArray: [Dictionary<String, String>] = []
+            var dataType: [String:String] = ["health_data_type": "heart_rate"]
+            myNewDictArray.append(dataType)
             
             for sample in samples {
                 // Process each sample here.
@@ -250,9 +204,9 @@ class DashboardViewController: UIViewController {
 //                print("Heart Rate: " + "\(sample.quantity)" + " Start Time: " + "\(sample.startDate)" + " End Time: " + "\(sample.endDate)")
                 let formatter = DateFormatter()
                 formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
-                
-                if (sample.device?.hardwareVersion == "Watch6,6" || sample.device?.hardwareVersion == "Watch6,7" || sample.device?.hardwareVersion == "Watch6,8" || sample.device?.hardwareVersion == "Watch6,9") {
-                    if (myNewDictArray.count == 0) {
+                let deviceType : String = sample.device?.hardwareVersion ?? "Watch6,6"
+                if (deviceType == "Watch6,6" || deviceType == "Watch6,7" || deviceType == "Watch6,8" || deviceType == "Watch6,9") {
+                    if (myNewDictArray.count == 1) {
                         var deviceType: [String:String] = ["apple_watch_type": "series_7"]
                         myNewDictArray.append(deviceType)
                     }
@@ -266,7 +220,7 @@ class DashboardViewController: UIViewController {
                 let jsonData = try JSONSerialization.data(withJSONObject: myNewDictArray, options: [])
                 let theJSONText = String(data: jsonData, encoding: .ascii)
                     print("JSON string = \(theJSONText!)")
-                self.postJsonHeartRateData(jsonString: theJSONText!)
+                self.postJsonData(jsonString: theJSONText!)
                 
             } catch {
                 print("error in converting data to json")
