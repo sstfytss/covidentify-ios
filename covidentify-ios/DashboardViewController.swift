@@ -73,20 +73,28 @@ class DashboardViewController: UIViewController {
                 return
             }
             var myNewDictArray: [Dictionary<String, String>] = []
-            var dataType: [String:String] = ["health_data_type": "sleep"]
+            let dataType: [String:String] = ["health_data_type": "sleep"]
             myNewDictArray.append(dataType)
             
             for sample in samples {
                 // Process each sample here.
                 let formatter = DateFormatter()
                 formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
-                let deviceType : String = sample.device?.hardwareVersion ?? "Watch6,6"
+                let deviceType : String = sample.device?.hardwareVersion ?? "unknown"
                 if (deviceType == "Watch6,6" || deviceType == "Watch6,7" || deviceType == "Watch6,8" || deviceType == "Watch6,9") {
                     if (myNewDictArray.count == 1) {
-                        var deviceType: [String:String] = ["apple_watch_type": "series_7"]
+                        let deviceType: [String:String] = ["apple_watch_type": "series_7"]
                         myNewDictArray.append(deviceType)
                     }
-                    var dictEntry: [String:String] = ["participant_id":"8888","device_id": "6666", "start_time":formatter.string(from: sample.startDate), "end_time":formatter.string(from: sample.endDate)]
+                    let dictEntry: [String:String] = ["participant_id":"000","device_id": "000", "start_time":formatter.string(from: sample.startDate), "end_time":formatter.string(from: sample.endDate)]
+                    myNewDictArray.append(dictEntry)
+                    
+                } else if (deviceType == "Watch6,14" || deviceType == "Watch6,15" || deviceType == "Watch6,16" || deviceType == "Watch6,17") {
+                    if (myNewDictArray.count == 1) {
+                        let deviceType: [String:String] = ["apple_watch_type": "series_8"]
+                        myNewDictArray.append(deviceType)
+                    }
+                    let dictEntry: [String:String] = ["participant_id":"000","device_id": "000", "start_time":formatter.string(from: sample.startDate), "end_time":formatter.string(from: sample.endDate)]
                     myNewDictArray.append(dictEntry)
                     
                 }
@@ -135,21 +143,28 @@ class DashboardViewController: UIViewController {
             }
             
             var myNewDictArray: [Dictionary<String, String>] = []
-            var dataType: [String:String] = ["health_data_type": "step_count"]
+            let dataType: [String:String] = ["health_data_type": "step_count"]
             myNewDictArray.append(dataType)
             
             for sample in samples {
                 // Process each sample here.
-                //print("Step quantity: " + "\(sample.quantity)" + " Start Time: " + "\(sample.startDate)" + " End Time: " + "\(sample.endDate)")
                 let formatter = DateFormatter()
                 formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
-                let deviceType : String = sample.device?.hardwareVersion ?? "Watch6,6"
+                let deviceType : String = sample.device?.hardwareVersion ?? "unknown"
                 if (deviceType == "Watch6,6" || deviceType == "Watch6,7" || deviceType == "Watch6,8" || deviceType == "Watch6,9") {
                     if (myNewDictArray.count == 1) {
-                        var deviceType: [String:String] = ["apple_watch_type": "series_7"]
+                        let deviceType: [String:String] = ["apple_watch_type": "series_7"]
                         myNewDictArray.append(deviceType)
                     }
-                    var dictEntry: [String:String] = ["participant_id":"8888","device_id": "6666",  "step_count":"\(Int(sample.quantity.doubleValue(for: HKUnit.count())))", "start_time":formatter.string(from: sample.startDate), "end_time":formatter.string(from: sample.endDate)]
+                    let dictEntry: [String:String] = ["participant_id":"000","device_id": "000",  "step_count":"\(Int(sample.quantity.doubleValue(for: HKUnit.count())))", "start_time":formatter.string(from: sample.startDate), "end_time":formatter.string(from: sample.endDate)]
+                    myNewDictArray.append(dictEntry)
+                    
+                } else if (deviceType == "Watch6,14" || deviceType == "Watch6,15" || deviceType == "Watch6,16" || deviceType == "Watch6,17") {
+                    if (myNewDictArray.count == 1) {
+                        let deviceType: [String:String] = ["apple_watch_type": "series_8"]
+                        myNewDictArray.append(deviceType)
+                    }
+                    let dictEntry: [String:String] = ["participant_id":"000","device_id": "000",  "step_count":"\(Int(sample.quantity.doubleValue(for: HKUnit.count())))", "start_time":formatter.string(from: sample.startDate), "end_time":formatter.string(from: sample.endDate)]
                     myNewDictArray.append(dictEntry)
                     
                 }
@@ -164,12 +179,6 @@ class DashboardViewController: UIViewController {
             } catch {
                 print("error in converting data to json")
             }
-            
-            
-            
-            
-            
-            
       
             // The results come back on an anonymous background queue.
             // Dispatch to the main queue before modifying the UI.
@@ -195,22 +204,29 @@ class DashboardViewController: UIViewController {
                 return
             }
             var myNewDictArray: [Dictionary<String, String>] = []
-            var dataType: [String:String] = ["health_data_type": "heart_rate"]
+            let dataType: [String:String] = ["health_data_type": "heart_rate"]
             myNewDictArray.append(dataType)
             
             for sample in samples {
                 // Process each sample here.
                 // start time and end time should be same for each heart rate sample
-//                print("Heart Rate: " + "\(sample.quantity)" + " Start Time: " + "\(sample.startDate)" + " End Time: " + "\(sample.endDate)")
                 let formatter = DateFormatter()
                 formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
-                let deviceType : String = sample.device?.hardwareVersion ?? "Watch6,6"
+                let deviceType : String = sample.device?.hardwareVersion ?? "unknown"
                 if (deviceType == "Watch6,6" || deviceType == "Watch6,7" || deviceType == "Watch6,8" || deviceType == "Watch6,9") {
                     if (myNewDictArray.count == 1) {
-                        var deviceType: [String:String] = ["apple_watch_type": "series_7"]
+                        let deviceType: [String:String] = ["apple_watch_type": "series_7"]
                         myNewDictArray.append(deviceType)
                     }
-                    var dictEntry: [String:String] = ["device_id": "6666",  "date":formatter.string(from: sample.startDate), "heart_rate":"\(Int(sample.quantity.doubleValue(for: HKUnit.count().unitDivided(by: HKUnit.minute()))))", "participant_id":"8888"]
+                    let dictEntry: [String:String] = ["device_id": "000",  "date":formatter.string(from: sample.startDate), "heart_rate":"\(Int(sample.quantity.doubleValue(for: HKUnit.count().unitDivided(by: HKUnit.minute()))))", "participant_id":"000"]
+                    myNewDictArray.append(dictEntry)
+                    
+                } else if (deviceType == "Watch6,14" || deviceType == "Watch6,15" || deviceType == "Watch6,16" || deviceType == "Watch6,17") {
+                    if (myNewDictArray.count == 1) {
+                        let deviceType: [String:String] = ["apple_watch_type": "series_8"]
+                        myNewDictArray.append(deviceType)
+                    }
+                    let dictEntry: [String:String] = ["device_id": "000",  "date":formatter.string(from: sample.startDate), "heart_rate":"\(Int(sample.quantity.doubleValue(for: HKUnit.count().unitDivided(by: HKUnit.minute()))))", "participant_id":"000"]
                     myNewDictArray.append(dictEntry)
                     
                 }
