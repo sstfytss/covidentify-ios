@@ -36,35 +36,60 @@ class LoginViewController: UIViewController {
         self.tappedLoginActivity.stopAnimating()
         let userID = self.emailField.text
         let password = self.passwordField.text
-        let validateMessage = self.validateLoginCredential(userID: userID!, password: password!)
-        if validateMessage=="success"{
-            self.performSegue(withIdentifier: "loginSuccess", sender: nil)
-        }else{
-            self.errorMessageField.text = validateMessage
+
+        if userID == nil || password == nil{
+            self.errorMessageField.text = "missing email or password"
             self.errorMessageField.alpha = 1
+        }else{
+            get(email: userID!, password: password!) { (ret) in
+                // Handle logic after return here
+                
+                if(ret == true){
+                    DispatchQueue.main.async {
+                        self.performSegue(withIdentifier: "loginSuccess", sender: nil)
+                    }
+                }else{
+                    DispatchQueue.main.async {
+                        self.errorMessageField.text = "login failed"
+                        self.errorMessageField.alpha = 1
+                    }
+                }
+            }
         }
+
     }
     
-    func validateLoginCredential(userID: String, password: String)-> String{
-        // check if any field is missing
-        if userID.isEmpty || password.isEmpty{
-            return "missing email or password"
-        }
-        // check if the ID and password are valid
-        else if userID == "pc177@duke.edu" && password == "password"{
-            return "success"}
-        // otherwise, return fail message
-        return "login failed"
+    func get(email: String, password: String, completionBlock: @escaping (Bool) -> Void){
+        let restEndPoint: String = "http://test-ios.azurewebsites.net/api/login/"
+       
+      guard let url = URL(string: restEndPoint) else{
+        print("error creating url")
+        return
+      }
+       
+      var urlRequest = URLRequest(url: url)
+      urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+       
+      let config = URLSessionConfiguration.default
+      let session = URLSession(configuration: config)
+        
+      let task = session.dataTask(with: urlRequest, completionHandler: { (data, response, error) in
+          let loginInfo: [LoginInfo] = try! JSONDecoder().decode([LoginInfo].self, from: data!)
+      
+          for userData in loginInfo{
+              print(userData)
+              print(userData.email)
+              print(userData.password)
+              if (userData.email == email && userData.password == password){
+                  completionBlock(true);
+              }else{
+                  completionBlock(false);
+              }
+          }
+      })
+       
+      task.resume()
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 

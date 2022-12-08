@@ -14,6 +14,7 @@
 		5859F1B328F856D10033749A /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5859F1B228F856D10033749A /* SignupViewController.swift */; };
 		5859F1B528F857540033749A /* ConnectDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5859F1B428F857540033749A /* ConnectDeviceViewController.swift */; };
 		5883276728F90235009DC094 /* AppleHealthkitAuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5883276628F90235009DC094 /* AppleHealthkitAuthorizationViewController.swift */; };
+		8F4739492941269700D19D97 /* LoginInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4739482941269700D19D97 /* LoginInfo.swift */; };
 		8F5B118C28ECDB790075DEE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5B118B28ECDB790075DEE1 /* AppDelegate.swift */; };
 		8F5B118E28ECDB790075DEE1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5B118D28ECDB790075DEE1 /* SceneDelegate.swift */; };
 		8F5B119028ECDB790075DEE1 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5B118F28ECDB790075DEE1 /* DashboardViewController.swift */; };
@@ -51,6 +52,7 @@
 		5859F1B228F856D10033749A /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		5859F1B428F857540033749A /* ConnectDeviceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectDeviceViewController.swift; sourceTree = "<group>"; };
 		5883276628F90235009DC094 /* AppleHealthkitAuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleHealthkitAuthorizationViewController.swift; sourceTree = "<group>"; };
+		8F4739482941269700D19D97 /* LoginInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInfo.swift; sourceTree = "<group>"; };
 		8F5B118828ECDB790075DEE1 /* covidentify-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "covidentify-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F5B118B28ECDB790075DEE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8F5B118D28ECDB790075DEE1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				5859F1B428F857540033749A /* ConnectDeviceViewController.swift */,
 				5859F1AE28F7C50C0033749A /* LoginViewController.swift */,
 				8F5B118F28ECDB790075DEE1 /* DashboardViewController.swift */,
+				8F4739482941269700D19D97 /* LoginInfo.swift */,
 				8F5B119128ECDB790075DEE1 /* Main.storyboard */,
 				8F5B119428ECDB7B0075DEE1 /* Assets.xcassets */,
 				8F5B119628ECDB7B0075DEE1 /* LaunchScreen.storyboard */,
@@ -291,6 +294,7 @@
 				5859F1B528F857540033749A /* ConnectDeviceViewController.swift in Sources */,
 				5850AD7E29047FBB0049BC98 /* ExportDataViewController.swift in Sources */,
 				5883276728F90235009DC094 /* AppleHealthkitAuthorizationViewController.swift in Sources */,
+				8F4739492941269700D19D97 /* LoginInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,9 +474,11 @@
 				CODE_SIGN_ENTITLEMENTS = "covidentify-ios/covidentify-ios.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = R3YA45CJDK;
+				DEVELOPMENT_TEAM = 8L2F22GBQ4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "covidentify-ios/Info.plist";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "access health data for better information";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "access health data for better information";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -483,7 +489,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "sstfytss.covidentify-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = sstfytss.cidentify;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -499,9 +505,11 @@
 				CODE_SIGN_ENTITLEMENTS = "covidentify-ios/covidentify-ios.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = R3YA45CJDK;
+				DEVELOPMENT_TEAM = 8L2F22GBQ4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "covidentify-ios/Info.plist";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "access health data for better information";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "access health data for better information";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -512,7 +520,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "sstfytss.covidentify-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = sstfytss.cidentify;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -527,7 +535,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = R3YA45CJDK;
+				DEVELOPMENT_TEAM = 8L2F22GBQ4;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -536,7 +544,7 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "sstfytss.covidentify-iosTests";
+				PRODUCT_BUNDLE_IDENTIFIER = sstfytss.cidentify;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -552,7 +560,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = R3YA45CJDK;
+				DEVELOPMENT_TEAM = 8L2F22GBQ4;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -561,7 +569,7 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "sstfytss.covidentify-iosTests";
+				PRODUCT_BUNDLE_IDENTIFIER = sstfytss.cidentify;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
