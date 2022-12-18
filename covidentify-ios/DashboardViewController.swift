@@ -80,13 +80,13 @@ class DashboardViewController: UIViewController {
                 // Process each sample here.
                 let formatter = DateFormatter()
                 formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
-                let deviceType : String = sample.device?.hardwareVersion ?? "unknown"
+                let deviceType : String = sample.device?.hardwareVersion ?? "Watch6,6"
                 if (deviceType == "Watch6,6" || deviceType == "Watch6,7" || deviceType == "Watch6,8" || deviceType == "Watch6,9") {
                     if (myNewDictArray.count == 1) {
                         let deviceType: [String:String] = ["apple_watch_type": "series_7"]
                         myNewDictArray.append(deviceType)
                     }
-                    let dictEntry: [String:String] = ["participant_id":"000","device_id": "000", "start_time":formatter.string(from: sample.startDate), "end_time":formatter.string(from: sample.endDate)]
+                    let dictEntry: [String:String] = ["participant_id":"000","device_id": "000", "start_time":formatter.string(from: sample.startDate), "end_time":formatter.string(from: sample.endDate), "source_name":(sample.device?.name)!]
                     myNewDictArray.append(dictEntry)
                     
                 } else if (deviceType == "Watch6,14" || deviceType == "Watch6,15" || deviceType == "Watch6,16" || deviceType == "Watch6,17") {
@@ -94,7 +94,7 @@ class DashboardViewController: UIViewController {
                         let deviceType: [String:String] = ["apple_watch_type": "series_8"]
                         myNewDictArray.append(deviceType)
                     }
-                    let dictEntry: [String:String] = ["participant_id":"000","device_id": "000", "start_time":formatter.string(from: sample.startDate), "end_time":formatter.string(from: sample.endDate)]
+                    let dictEntry: [String:String] = ["participant_id":"000","device_id": "000", "start_time":formatter.string(from: sample.startDate), "end_time":formatter.string(from: sample.endDate), "source_name":(sample.device?.name)!]
                     myNewDictArray.append(dictEntry)
                     
                 }
