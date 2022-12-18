@@ -82,10 +82,9 @@ class LoginViewController: UIViewController {
               print(userData.password)
               if (userData.email == email && userData.password == password){
                   completionBlock(true);
-              }else{
-                  completionBlock(false);
               }
           }
+          completionBlock(false);
       })
        
       task.resume()
